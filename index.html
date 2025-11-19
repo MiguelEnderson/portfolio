@@ -10,6 +10,7 @@
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
   body { background:#0b0b0b; color:#e0e0e0; line-height:1.6; }
 
+  /* Header */
   header {
     text-align:center;
     padding:70px 20px;
@@ -18,12 +19,12 @@
   header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; }
   header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; }
 
+  /* Sobre Mim */
   .about {
     padding:50px 20px;
     max-width:900px;
     margin:0 auto;
   }
-
   .about-container {
     display:flex;
     align-items:center;
@@ -31,31 +32,29 @@
     flex-wrap:wrap;
     justify-content:center;
   }
-
   .about-photo img {
+    display:block;
     width:250px;
     height:250px;
     object-fit:cover;
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
   }
-
   .about-text {
     flex:1;
     min-width:250px;
   }
-
   .about-text h2 {
     font-size:2em;
     color:#e0e0e0;
     margin-bottom:20px;
   }
-
   .about-text p {
     font-size:1.1em;
     color:#d0d0d0;
   }
 
+  /* Portfólio */
   .portfolio {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -63,7 +62,6 @@
     max-width:1200px;
     margin:0 auto 60px auto;
   }
-
   .portfolio img {
     width:100%;
     border-radius:15px;
@@ -88,6 +86,7 @@
   .lightbox img { max-width:90%; max-height:80%; border-radius:12px; }
   .lightbox span { position:absolute; top:20px; right:40px; font-size:3em; color:#fff; cursor:pointer; }
 
+  /* Footer */
   footer {
     background:#1a1a1a;
     text-align:center;
@@ -113,11 +112,11 @@
   footer .social-buttons a.instagram { background:#C13584; color:#fff; }
   footer .social-buttons a.gmail { background:#D44638; color:#fff; }
 
+  /* Responsividade */
   @media(max-width:768px){
     .about-container { flex-direction: column; text-align:center; }
     .about-photo img { width:200px; height:200px; }
   }
-
   @media(max-width:600px){
     header h1{font-size:2.2em;}
     .about-text h2{font-size:1.7em;}
@@ -134,7 +133,7 @@
 <section class="about">
   <div class="about-container">
     <div class="about-photo">
-      <img src="images/sua-foto.jpg" alt="Minha Foto">
+      <img src="images/minha-foto.jpg" alt="Minha Foto">
     </div>
     <div class="about-text">
       <h2>Sobre Mim</h2>
