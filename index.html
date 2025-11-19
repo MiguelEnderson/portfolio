@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LM Fotografias</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<!-- Ícones do FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
   body { background:#0b0b0b; color:#e0e0e0; line-height:1.6; }
@@ -26,16 +28,6 @@
   .about h2 { font-size:2em; color:#4a90e2; margin-bottom:20px; }
   .about p { font-size:1.1em; color:#d0d0d0; }
 
-  .filter-buttons {
-    text-align:center;
-    margin-bottom:40px;
-  }
-  .filter-buttons button { 
-    background:#4a90e2; color:#fff; border:none; padding:10px 20px; margin:5px; cursor:pointer; border-radius:8px; 
-    transition: all 0.3s; font-weight:600;
-  }
-  .filter-buttons button:hover, .filter-buttons button.active { background:#ffffff; color:#0b0b0b; }
-
   .portfolio {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -49,9 +41,7 @@
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
     cursor:pointer;
     transition: transform 0.4s, filter 0.4s, opacity 0.5s;
-    opacity:1;
   }
-  .portfolio img.hide { display:none; }
   .portfolio img:hover { transform: scale(1.08) rotate(1deg); filter: brightness(1.2); }
 
   /* Lightbox */
@@ -75,9 +65,20 @@
     padding:50px 20px;
     color:#d0d0d0;
   }
-  footer p { margin-bottom:10px; font-weight:bold; }
-  footer a { color:#4a90e2; text-decoration:none; margin:0 12px; font-weight:600; transition:color 0.3s; }
-  footer a:hover { color:#ffffff; }
+  footer .social-buttons a {
+    background:#4a90e2;
+    color:#fff;
+    display:inline-block;
+    width:50px;
+    height:50px;
+    line-height:50px;
+    margin:0 10px;
+    border-radius:50%;
+    text-align:center;
+    font-size:1.5em;
+    transition: all 0.3s;
+  }
+  footer .social-buttons a:hover { background:#ffffff; color:#0b0b0b; }
 
   @media(max-width:600px){
     header h1{font-size:2.2em;}
@@ -94,24 +95,19 @@
 
 <section class="about">
   <h2>Sobre Mim</h2>
-  <p>Fotógrafo especializado em eventos, aniversários, lifestyle e esportes. Meu objetivo é capturar cada detalhe e emoção, criando memórias que duram para sempre.</p>
+  <p>Fotógrafo especializado em capturar cada detalhe e emoção. Meu objetivo é criar memórias que duram para sempre.</p>
 </section>
 
-<div class="filter-buttons">
-  <button class="active" data-filter="all">Todos</button>
-  <button data-filter="eventos">Eventos</button>
-  <button data-filter="aniversarios">Aniversários</button>
-  <button data-filter="lifestyle">Lifestyle</button>
-  <button data-filter="esportes">Esportes</button>
-</div>
-
 <section class="portfolio">
-  <img src="images/foto1.jpg" alt="Evento 1" data-category="eventos">
-  <img src="images/foto2.jpg" alt="Aniversário 1" data-category="aniversarios">
-  <img src="images/foto3.jpg" alt="Lifestyle 1" data-category="lifestyle">
-  <img src="images/foto4.jpg" alt="Esportes 1" data-category="esportes">
-  <img src="images/foto5.jpg" alt="Evento 2" data-category="eventos">
-  <img src="images/foto6.jpg" alt="Aniversário 2" data-category="aniversarios">
+  <img src="images/foto1.jpg" alt="Foto 1">
+  <img src="images/foto2.jpg" alt="Foto 2">
+  <img src="images/foto3.jpg" alt="Foto 3">
+  <img src="images/foto4.jpg" alt="Foto 4">
+  <img src="images/foto5.jpg" alt="Foto 5">
+  <img src="images/foto6.jpg" alt="Foto 6">
+  <img src="images/foto7.jpg" alt="Foto 7">
+  <img src="images/foto8.jpg" alt="Foto 8">
+  <img src="images/foto9.jpg" alt="Foto 9">
 </section>
 
 <!-- Lightbox -->
@@ -122,34 +118,16 @@
 
 <footer>
   <p>Entre em contato</p>
-  <p>
-    <a href="https://instagram.com/lmfotografiass" target="_blank">Instagram</a> |
-    <a href="https://wa.me/5587996006250" target="_blank">WhatsApp</a> |
-    <a href="mailto:edcmih@gmail.com">Email</a>
-  </p>
+  <div class="social-buttons">
+    <a href="https://instagram.com/lmfotografiass" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/5587996006250" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:edcmih@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
 </footer>
 
 <script>
-  // Filtro de categorias
-  const buttons = document.querySelectorAll('.filter-buttons button');
-  const images = document.querySelectorAll('.portfolio img');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      buttons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      const filter = button.dataset.filter;
-      images.forEach(img => {
-        if(filter === 'all' || img.dataset.category === filter) {
-          img.classList.remove('hide');
-        } else {
-          img.classList.add('hide');
-        }
-      });
-    });
-  });
-
   // Lightbox
+  const images = document.querySelectorAll('.portfolio img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const closeBtn = document.getElementById('close');
@@ -162,8 +140,9 @@
   });
 
   closeBtn.addEventListener('click', () => { lightbox.style.display = 'none'; });
-  lightbox.addEventListener('click', e => { if(e.target!==lightboxImg && e.target!==closeBtn) lightbox.style.display='none'; });
+  lightbox.addEventListener('click', e => { if(e.target !== lightboxImg && e.target !== closeBtn) lightbox.style.display = 'none'; });
 </script>
 
 </body>
 </html>
+
