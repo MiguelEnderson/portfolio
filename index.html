@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:sans-serif; }
-  body { background:#0b0b0b; color:#e0e0e0; line-height:1.6; }
+  body { background:#0b0b0b; color:#e0e0e0; line-height:1.6; overflow-x:hidden; }
 
   /* Header */
   header {
@@ -25,12 +25,9 @@
     top:0; left:0; right:0; bottom:0;
     background:rgba(0,0,0,0.6);
   }
-  header h1, header p {
-    position: relative;
-    z-index:1;
-  }
-  header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; transition: transform 0.3s; }
-  header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; transition: transform 0.3s; }
+  header h1, header p { position: relative; z-index:1; transition: transform 0.5s ease; }
+  header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; }
+  header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; }
 
   /* Sobre Mim */
   .about {
@@ -52,25 +49,22 @@
     object-fit:cover;
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
-    transition: transform 0.4s, filter 0.4s;
+    transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
+    opacity:0;
+    transform: translateY(40px);
   }
-  .about-photo img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
+  .about-photo img.visible { opacity:1; transform: translateY(0); }
+  .about-photo img:hover { transform: scale(1.05); filter: brightness(1.1); }
   .about-text {
     flex:1;
     min-width:250px;
+    opacity:0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
   }
-  .about-text h2 {
-    font-size:2em;
-    color:#e0e0e0;
-    margin-bottom:20px;
-  }
-  .about-text p {
-    font-size:1.1em;
-    color:#d0d0d0;
-  }
+  .about-text.visible { opacity:1; transform: translateY(0); }
+  .about-text h2 { font-size:2em; color:#e0e0e0; margin-bottom:20px; }
+  .about-text p { font-size:1.1em; color:#d0d0d0; }
 
   /* Portfólio */
   .portfolio {
@@ -86,11 +80,14 @@
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
     cursor:pointer;
     transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
+    opacity:0;
+    transform: scale(0.95);
   }
-  .portfolio img:hover {
-    transform: scale(1.08) rotate(1deg);
-    filter: brightness(1.2);
+  .portfolio img.visible {
+    opacity:1;
+    transform: scale(1);
   }
+  .portfolio img:hover { transform: scale(1.08) rotate(1deg); filter: brightness(1.2); }
 
   /* Lightbox */
   .lightbox {
@@ -206,7 +203,20 @@
 
   closeBtn.addEventListener('click', () => { lightbox.style.display = 'none'; });
   lightbox.addEventListener('click', e => { if(e.target !== lightboxImg && e.target !== closeBtn) lightbox.style.display='none'; });
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const animatedElements = document.querySelectorAll('.about-photo img, .about-text, .portfolio img');
+  animatedElements.forEach(el => observer.observe(el));
 </script>
 
 </body>
 </html>
+
