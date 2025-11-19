@@ -14,10 +14,23 @@
   header {
     text-align:center;
     padding:70px 20px;
-    background:#1a1a1a;
+    background:#1a1a1a url('images/header-bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
   }
-  header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; }
-  header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; }
+  header::before {
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.6);
+  }
+  header h1, header p {
+    position: relative;
+    z-index:1;
+  }
+  header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; transition: transform 0.3s; }
+  header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; transition: transform 0.3s; }
 
   /* Sobre Mim */
   .about {
@@ -39,6 +52,11 @@
     object-fit:cover;
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
+    transition: transform 0.4s, filter 0.4s;
+  }
+  .about-photo img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
   }
   .about-text {
     flex:1;
@@ -67,9 +85,12 @@
     border-radius:15px;
     box-shadow:0 10px 25px rgba(0,0,0,0.6);
     cursor:pointer;
-    transition: transform 0.4s, filter 0.4s, opacity 0.5s;
+    transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
   }
-  .portfolio img:hover { transform: scale(1.08) rotate(1deg); filter: brightness(1.2); }
+  .portfolio img:hover {
+    transform: scale(1.08) rotate(1deg);
+    filter: brightness(1.2);
+  }
 
   /* Lightbox */
   .lightbox {
