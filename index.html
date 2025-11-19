@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LM Fotografias</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<!-- Ícones do FontAwesome -->
+<!-- FontAwesome para ícones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif; }
@@ -16,7 +16,7 @@
     padding:70px 20px;
     background:#1a1a1a;
   }
-  header h1 { font-size:3em; color:#4a90e2; letter-spacing:2px; margin-bottom:15px; }
+  header h1 { font-size:3em; color:#e0e0e0; letter-spacing:2px; margin-bottom:15px; }
   header p { font-size:1.3em; color:#cfcfcf; max-width:600px; margin:0 auto; }
 
   .about {
@@ -25,7 +25,7 @@
     margin:0 auto;
     text-align:center;
   }
-  .about h2 { font-size:2em; color:#4a90e2; margin-bottom:20px; }
+  .about h2 { font-size:2em; color:#e0e0e0; margin-bottom:20px; }
   .about p { font-size:1.1em; color:#d0d0d0; }
 
   .portfolio {
@@ -66,7 +66,7 @@
     color:#d0d0d0;
   }
   footer .social-buttons a {
-    background:#4a90e2;
+    background:#333;
     color:#fff;
     display:inline-block;
     width:50px;
@@ -78,7 +78,11 @@
     font-size:1.5em;
     transition: all 0.3s;
   }
-  footer .social-buttons a:hover { background:#ffffff; color:#0b0b0b; }
+  footer .social-buttons a:hover { opacity:0.8; }
+
+  footer .social-buttons a.whatsapp { background:#25D366; color:#fff; }
+  footer .social-buttons a.instagram { background:#C13584; color:#fff; }
+  footer .social-buttons a.gmail { background:#D44638; color:#fff; }
 
   @media(max-width:600px){
     header h1{font-size:2.2em;}
@@ -119,9 +123,9 @@
 <footer>
   <p>Entre em contato</p>
   <div class="social-buttons">
-    <a href="https://instagram.com/lmfotografiass" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://wa.me/5587996006250" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="mailto:edcmih@gmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://instagram.com/lmfotografiass" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/5587996006250" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:edcmih@gmail.com" class="gmail"><i class="fas fa-envelope"></i></a>
   </div>
 </footer>
 
@@ -140,9 +144,8 @@
   });
 
   closeBtn.addEventListener('click', () => { lightbox.style.display = 'none'; });
-  lightbox.addEventListener('click', e => { if(e.target !== lightboxImg && e.target !== closeBtn) lightbox.style.display = 'none'; });
+  lightbox.addEventListener('click', e => { if(e.target !== lightboxImg && e.target !== closeBtn) lightbox.style.display='none'; });
 </script>
 
 </body>
 </html>
-
